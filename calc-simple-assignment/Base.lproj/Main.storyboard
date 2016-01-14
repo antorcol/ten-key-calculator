@@ -220,7 +220,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kc-GZ-TU5" userLabel="btn-eq">
+                                            <button opaque="NO" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" ambiguous="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kc-GZ-TU5" userLabel="btn-eq">
                                                 <rect key="frame" x="198" y="0.0" width="56" height="69"/>
                                                 <state key="normal" image="btn-EQ"/>
                                                 <connections>
@@ -320,7 +320,7 @@
         <image name="btn-ADD" width="73" height="42"/>
         <image name="btn-DEC" width="73" height="42"/>
         <image name="btn-DIV" width="73" height="42"/>
-        <image name="btn-EQ" width="75" height="88"/>
+        <image name="btn-EQ" width="73" height="86"/>
         <image name="btn-M+" width="73" height="42"/>
         <image name="btn-M-0" width="73" height="42"/>
         <image name="btn-MC" width="73" height="42"/>
