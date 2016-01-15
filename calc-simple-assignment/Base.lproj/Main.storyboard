@@ -129,21 +129,21 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
                                                 <state key="normal" image="btn-7"/>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJF-yD-HYF"/>
+                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJF-yD-HYF"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2P-zH-GpU" userLabel="btn-8">
                                                 <rect key="frame" x="66" y="0.0" width="56" height="32"/>
                                                 <state key="normal" image="btn-8"/>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PaG-sx-7Kz"/>
+                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PaG-sx-7Kz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rx7-Rl-yDC" userLabel="btn-9">
                                                 <rect key="frame" x="132" y="0.0" width="56" height="32"/>
                                                 <state key="normal" image="btn-9"/>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mKb-Pw-EqK"/>
+                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mKb-Pw-EqK"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="11" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O21-kl-ULE" userLabel="btn-sub">
@@ -162,21 +162,21 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
                                                 <state key="normal" image="btn-4"/>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oQV-I2-bEm"/>
+                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oQV-I2-bEm"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-kB-F80" userLabel="btn-5">
                                                 <rect key="frame" x="66" y="0.0" width="56" height="32"/>
                                                 <state key="normal" image="btn-5"/>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="84q-mw-N7z"/>
+                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="84q-mw-N7z"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEc-8W-dap" userLabel="btn-6">
                                                 <rect key="frame" x="132" y="0.0" width="56" height="32"/>
                                                 <state key="normal" image="btn-6"/>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qF0-dT-Xzn"/>
+                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qF0-dT-Xzn"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfB-YE-Xeu" userLabel="btn-plus">
@@ -201,21 +201,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
                                                                 <state key="normal" image="btn-1"/>
                                                                 <connections>
-                                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aya-Gq-ji9"/>
+                                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aya-Gq-ji9"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="2" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnJ-PJ-arh" userLabel="btn-2">
                                                                 <rect key="frame" x="66" y="0.0" width="56" height="32"/>
                                                                 <state key="normal" image="btn-2"/>
                                                                 <connections>
-                                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cnX-5d-fDc"/>
+                                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cnX-5d-fDc"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="3" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcM-1D-f3y" userLabel="btn-3">
                                                                 <rect key="frame" x="132" y="0.0" width="56" height="32"/>
                                                                 <state key="normal" image="btn-3"/>
                                                                 <connections>
-                                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1hi-nV-L16"/>
+                                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1hi-nV-L16"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -227,7 +227,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="122" height="32"/>
                                                                 <state key="normal" image="btn-0"/>
                                                                 <connections>
-                                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jpx-wu-eVx"/>
+                                                                    <action selector="numberButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jpx-wu-eVx"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99d-lO-6Fn" userLabel="btn-dec">

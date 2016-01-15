@@ -27,7 +27,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Numnums-Inc" translatesAutoresizingMaskIntoConstraints="NO" id="pcR-v4-vRg" userLabel="imgLogo">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="193"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ATC Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-jJ-BJA" userLabel="lblAppName">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ATC Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-jJ-BJA" userLabel="lblAppName">
                                         <rect key="frame" x="202" y="193" width="197" height="194"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" red="1" green="0.24974151419999999" blue="0.2023816598" alpha="1" colorSpace="calibratedRGB"/>
