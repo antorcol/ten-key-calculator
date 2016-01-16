@@ -233,6 +233,9 @@
                                                             <button opaque="NO" contentMode="center" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99d-lO-6Fn" userLabel="btn-dec">
                                                                 <rect key="frame" x="132" y="0.0" width="56" height="32"/>
                                                                 <state key="normal" image="btn-DEC"/>
+                                                                <connections>
+                                                                    <action selector="btnDecimal_Press:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xax-Dg-8Vz"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>

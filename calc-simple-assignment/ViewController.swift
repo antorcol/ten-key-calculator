@@ -6,20 +6,44 @@
 //  Copyright © 2016 Anthony Torrero Collins. All rights reserved.
 //
 
+/*
+    This calculator was created as part of the Udemy.com course, 
+    "iOS 9 and Swift 2: From Beginner to Paid Professional," by 
+    Mark Price, lectures 40-41.
+
+    I chose to implement a traditional 10-key desk calculator with
+    the following features:
+
+        Combination On/Clear/Off button
+        Added a decimal.
+        5 numeric operations (add, subtract, divide, multiply, and percent)
+        Four single-register memory keys (clear, add to, subtract from, and recall).
+
+    Some limitations.
+        
+        The LCD does not respond perfectly to overrange. It appends '...' to numbers 
+        that are too large (or small) for the display.
+
+        I played around with the autolayout for quite a while. I wanted it to grow or 
+        shrink to a percentage of the host device. I was unsuccessful with that, and 
+        I ended up having to use fixed values for some elements to ensure alignment 
+        and position.
+*/
+
 import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
 
     //MARK: Local Variables
-    var btnSound :AVAudioPlayer!    //when a button is pressed
-    var runningNumberStr: String = "0"  //always reflects the display during number entry. Cleared on + - / * =
-    var leftSideStr: String = "0"       //contains the display value after operator entry. Cleared on =
-    var rightSideStr: String = "0"      //contains the value in numeric display after 2nd/subsequent operator entry. Cleared on =
-    var currOp: NumericOperation = .NoOp   //contains the earlier queued operator
-    var onState: Bool = false              //true iff the calculator is on
-    var onStateClickCount: Int = 0      //the number of times the On/Clear button has been clicked
-    var memoryVal: String = "0"         //the value in calc memory
+    var btnSound :AVAudioPlayer!        //When a button is pressed
+    var runningNumberStr: String = "0"  //Always reflects the display during number entry. Cleared on +, -, /, *, =, and any mem button
+    var leftSideStr: String = "0"       //Contains the display value after operator entry. Cleared on =
+    var rightSideStr: String = "0"      //Contains the value in numeric display after 2nd/subsequent operator entry. Cleared on =
+    var currOp: NumericOperation = .NoOp   //Contains the earlier queued operator
+    var onState: Bool = false              //True iff the calculator is on
+    var onStateClickCount: Int = 0      //The number of times the On/Clear button has been clicked
+    var memoryVal: String = "0"         //The value in calc memory
 
     //MARK: Outlets
     @IBOutlet weak var lblTotal: UILabel!
@@ -27,11 +51,11 @@ class ViewController: UIViewController {
     //MARK: Numeric Operations
     /*
         Pre:
-            the calculator is ON
-            a number button has been pressed
+            The calculator is ON.
+            A number button has been pressed.
         Post:
-            update the display and the running number with 
-            the added digit
+            Update the display and the running number with
+             the added digit.
     */
     @IBAction func numberButtonPressed(btn: UIButton) {
 
@@ -42,7 +66,8 @@ class ViewController: UIViewController {
         
         playButtonSound()
         
-        if((runningNumberStr == "0") || (runningNumberStr == "0.0")) {
+//        if((runningNumberStr == "0") || (runningNumberStr == "0.0")) {
+        if(runningNumberStr == "0") {
             runningNumberStr = "\(btn.tag)"
         } else {
             runningNumberStr += "\(btn.tag)"
@@ -56,12 +81,13 @@ class ViewController: UIViewController {
     
     /*
         Pre
-            One of +, -, x, \u{00F7}, % is pressed
+            The calculator is ON.
+            One of +, -, x, \u{00F7}, % is pressed.
         Post
-            complete any right-hand calculations,
-            put the result in the left-hand register,
-            and reset the right-hand register
-    
+            Complete any right-hand calculations,
+            Put the result in the left-hand register,
+             and reset the right-hand register.
+            Also, if this is not '=', set the currOp value.
     */
     func processNumericOp(op: NumericOperation) {
         
@@ -69,7 +95,6 @@ class ViewController: UIViewController {
         
         playButtonSound()
         onStateClickCount = 1
-        
         
         rightSideStr = runningNumberStr
         runningNumberStr = "0"
@@ -82,8 +107,6 @@ class ViewController: UIViewController {
             result = "\(Double(leftSideStr)! * Double(rightSideStr)!)"
         } else if (currOp == .DividedBy) {
             result = "\(Double(leftSideStr)! / Double(rightSideStr)!)"
-        } else {
-            print("Unknown Operation in processNumericOp!")
         }
         
         lblTotal.text = result
@@ -93,26 +116,28 @@ class ViewController: UIViewController {
         if(op != .Equals) {
             currOp = op
         } else {
-           // leftSideStr = "0"
+           // keep the currOp as is
         }
         
+        return
     }
     
     
     //MARK: Button Actions
     /* 
-        note that in order to make the equals button work with an immediate
+        Note that in order to make the equals button work with an immediate
         operator after (such as '1+5=*4=' ... I moved some of the logic
         from processNumericOp into the actions. Some duplication, but 
-        it made it simpler.
+        it made it simpler to follow the code.
     */
     
     
     /*
-        if there is a calculation queued,
+        If there is a calculation queued,
         complete the calculation, 
         and reset the right-hand register.
-        otherwise, just stop the running input
+        Otherwise, just stop the running input and
+        set the leftSideStr for a future calculation.
     */
     @IBAction func btnEquals_Press(btn: UIButton) {
         guard(onState)
@@ -126,15 +151,20 @@ class ViewController: UIViewController {
             playButtonSound()
             leftSideStr = lblTotal.text!
             runningNumberStr = "0"
-            //currOp already .NoOp
+            //currOp is never set to .Equals
         }
+        
+        return
     }
 
     /*
-        start an add operation
-        complete any right-hand calculations,
+        Start an add operation.
+        Complete any right-hand calculations,
         put the result in the left-hand register,
-        and reset the right-hand register
+        and reset the right-hand register.
+        Otherwise, just stop the running input,
+        set the leftSideStr for a future calculation, 
+        and set the currOp value.
     */
     @IBAction func btnAdd_Press(btn: UIButton) {
         guard(onState)
@@ -149,13 +179,18 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
             currOp = .Plus
         }
+        
+        return
     }
 
     /*
-        start a percent operation
-        complete any right-hand calculations,
+        Start a percent operation.
+        Complete any right-hand calculations,
         put the result in the left-hand register,
-        and reset the right-hand register
+        and reset the right-hand register.
+        Otherwise, just stop the running input,
+        set the leftSideStr for a future calculation,
+        and set the currOp value.
     */
     @IBAction func btnPercent_Press(btn: UIButton) {
         guard(onState)
@@ -170,13 +205,18 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
             currOp = .Percent
         }
+        
+        return
     }
     
     /*
-        start a multiply operation
-        complete any right-hand calculations,
-        put the result in the left-hand register,
-        and reset the right-hand register
+        Start a multiply operation.
+        Complete any right-hand calculations,
+        Put the result in the left-hand register,
+        and reset the right-hand register.
+        Otherwise, just stop the running input,
+        set the leftSideStr for a future calculation,
+        and set the currOp value.
     */
     @IBAction func btnMultiply_Press(btn: UIButton) {
         guard(onState)
@@ -191,13 +231,18 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
             currOp = .Times
         }
+        
+        return
     }
     
     /*
-        start a divide operation
-        complete any right-hand calculations,
+        Start a divide operation.
+        Complete any right-hand calculations,
         put the result in the left-hand register,
-        and reset the right-hand register
+        and reset the right-hand register.
+        Otherwise, just stop the running input,
+        set the leftSideStr for a future calculation,
+        and set the currOp value.
     */
     @IBAction func btnDivide_Press(btn: UIButton) {
         guard(onState)
@@ -212,13 +257,18 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
             currOp = .DividedBy
         }
+        
+        return
     }
     
     /*
-        start a subtract operation
-        complete any right-hand calculations,
+        Start a subtract operation.
+        Complete any right-hand calculations,
         put the result in the left-hand register,
-        and reset the right-hand register
+        and reset the right-hand register.
+        Otherwise, just stop the running input,
+        set the leftSideStr for a future calculation,
+        and set the currOp value.
     */
     @IBAction func btnSubtract_Press(btn: UIButton) {
         guard(onState)
@@ -233,6 +283,37 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
             currOp = .Minus
         }
+        
+        return
+    }
+
+    /*
+        Pre:
+            The label may or may not have a value
+        Post:
+            The lable has whatever its current value is, with the terminating decimal.
+            If the value is zero, the display is '0.'
+        Notes:
+            Invoke the decimal.
+            This effectively places a decimal inline.
+            The number buttons are run on the Tag property, which is only an integer value.
+    */
+    @IBAction func btnDecimal_Press(btn:UIButton) {
+        
+        playButtonSound()
+
+//        if((runningNumberStr == "0") || (runningNumberStr == "0.0")) {
+        
+        if(runningNumberStr == "0") {
+            runningNumberStr = "0."
+        } else if (!runningNumberStr.containsString(".")) {
+            runningNumberStr += "."
+        }
+        
+        lblTotal.text = runningNumberStr
+        onStateClickCount = 1
+        
+        return
     }
 
     
@@ -240,10 +321,10 @@ class ViewController: UIViewController {
     
     /* 
         Pre:
-            the calculator is ON
-            one of the four memory buttons has been pressed
+            The calculator is ON
+            One of the four memory buttons has been pressed
         Post:
-            the appropriate memory operation is complete
+            The appropriate memory operation is complete
     */
     func processMemoryOperation(op: NumericOperation) {
         
@@ -255,60 +336,70 @@ class ViewController: UIViewController {
         playButtonSound()
         
         if (op == .MemRcl) {
+            runningNumberStr = memoryVal
+            leftSideStr = lblTotal.text!
+            lblTotal.text = memoryVal
+            //skip setting runningNumberString to 0 if
+            // the recall is done right after an operator
             if(currOp != .NoOp ) {
-                leftSideStr = memoryVal
-                runningNumberStr = memoryVal
-                lblTotal.text = leftSideStr
-            } else {
-                rightSideStr = memoryVal
-                runningNumberStr = memoryVal
-                lblTotal.text = rightSideStr
-            }
+                return
+           }
+            
         } else if (op == .MemClr) {
             memoryVal = "0"
         } else if (op == .MemAdd) {
             memoryVal = "\(Double(memoryVal)! + Double(lblTotal.text!)!)"
         } else if (op == .MemSub) {
             memoryVal = "\(Double(memoryVal)! - Double(lblTotal.text!)!)"
-        } else {
-            print("Unknown Operation in processMemoryOperation!")
         }
+        
         runningNumberStr = "0"
+        
+        return
     }
     
     
+    //MARK: Memory Button Actions
     /*
-        clear the value from the memory register
+        Clear the value from the memory register.
     */
     @IBAction func btnMemoryClear(btn: UIButton) {
         processMemoryOperation(.MemClr)
+        
+        return
     }
     
     /*
-        add a value to the current memory register
+        Add a value to the current memory register.
     */
     @IBAction func btnMemoryAdd(btn: UIButton) {
         processMemoryOperation(.MemAdd)
+        
+        return
     }
     
     /*
-        subtract a value from the current memory register
+        Subtract a value from the current memory register.
     */
     @IBAction func btnMemorySubtract(btn: UIButton) {
         processMemoryOperation(.MemSub)
+        
+        return
     }
     
     /*
-        replace the value in the display with value from the memory register
+        Replace the value in the display with value from the memory register.
     */
     @IBAction func btnMemoryRecall(btn: UIButton) {
         processMemoryOperation(.MemRcl)
+        
+        return
     }
 
 
     /*
-        turn the calculator on and off.
-        also, clear the current value
+        Turn the calculator on and off.
+        Also used to clear the current values.
     */
     @IBAction func btnOnOffClear(sender: UIButton) {
         
@@ -321,13 +412,11 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
         } else if (onStateClickCount == 1) { //clear the current value only
             //inc and set to zero in ones
-
             onStateClickCount = 2 //one more to turn off
             lblTotal.text = "0"
             runningNumberStr = "0"
             rightSideStr = "0"
-        } else {
-            //turn off
+        } else { //turn off
             onStateClickCount = 0
             onState = false
             runningNumberStr = "0"
@@ -336,6 +425,8 @@ class ViewController: UIViewController {
             lblTotal.text = "0"
             memoryVal = "0"
         }
+        
+        return
     }
 
     
@@ -368,14 +459,14 @@ class ViewController: UIViewController {
     
     /*
         Pre:
-            a. the AVAudioPlayer is set up
-            b. a sound may or may not already be playiing
+            a. The AVAudioPlayer is set up
+            b. A sound may or may not already be playiing
         Post:
-            only one sound is playing
+            Only one sound is playing
     
         Notes:
-            we do this because quick clicks may result in 
-            choppy button click sounds
+            We do this because quick clicks may result in
+            choppy button click sounds.
     */
     func playButtonSound() {
         if(btnSound.playing) {
@@ -383,6 +474,8 @@ class ViewController: UIViewController {
         }
         
         btnSound.play()
+        
+        return
     }
     
     
@@ -390,10 +483,10 @@ class ViewController: UIViewController {
 
     /*
         Pre:
-            the view elements are loaded
+            The view elements are loaded
         Post:
-            labels, sounds, other use interface
-            elements are set up
+            Labels, sounds, other use interface
+            elements are set up.
     */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -405,13 +498,15 @@ class ViewController: UIViewController {
         do {
             try
                 btnSound = AVAudioPlayer(contentsOfURL: btnSoundPathURL)
-            btnSound.prepareToPlay()
+                btnSound.prepareToPlay()
         } catch let err as NSError {
             print(err.debugDescription)
         }
         
         lblTotal.text = ""
         
+        
+        return
     }
     
     
