@@ -422,7 +422,7 @@ class ViewController: UIViewController {
             runningNumberStr = "0"
             leftSideStr = "0"
             rightSideStr = "0"
-            lblTotal.text = "0"
+            lblTotal.text = ""
             memoryVal = "0"
         }
         
